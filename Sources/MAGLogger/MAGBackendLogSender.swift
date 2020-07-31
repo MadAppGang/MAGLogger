@@ -26,7 +26,7 @@ public class MAGBackendLogSender {
     private var sendingInProgress = false
     private var initialSending = true
     private var sessionID = ""
-    private(set) var queue: DispatchQueue
+    public private(set) var queue: DispatchQueue
 
     
     public init(serverURL: URL, appID: String? = nil, appSecret: String? = nil, sendToServerTimeout: TimeInterval = 10, minAllowedThreshold: Int = 10) {
@@ -347,7 +347,7 @@ public class MAGBackendLogSender {
 
 extension MAGBackendLogSender: MAGLogSender {
     
-    func send(_ level: MAGLogger.LogLevel, tag: String, msg: String, thread: String, file: String, function: String, line: Int, context: Any?) {
+    public func send(_ level: MAGLogger.LogLevel, tag: String, msg: String, thread: String, file: String, function: String, line: Int, context: Any?) {
         var dict: [String: Any] = [
             "sessionID": sessionID,
             "timestamp": Date().timeIntervalSince1970,

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-protocol MAGLogSender {
+public protocol MAGLogSender {
     
     var queue: DispatchQueue { get }
     
@@ -20,7 +20,7 @@ protocol MAGLogSender {
 
 public class MAGLogger {
     
-    enum LogLevel: Int {
+    public enum LogLevel: Int {
         case verbose = 0
         case debug = 1
         case info = 2
