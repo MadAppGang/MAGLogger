@@ -18,7 +18,7 @@ protocol MAGLogSender {
 }
 
 
-final class MAGLogger {
+public class MAGLogger {
     
     enum LogLevel: Int {
         case verbose = 0
@@ -28,26 +28,26 @@ final class MAGLogger {
         case error = 4
     }
     
-    static var logSender: MAGLogSender?
+    public static var logSender: MAGLogSender?
     
     
-    class func verbose(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
+    public class func verbose(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
         custom(.verbose, tag, message(), file, function, line: line, context: context)
     }
 
-    class func debug(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
+    public class func debug(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
         custom(.debug, tag, message(), file, function, line: line, context: context)
     }
     
-    class func info(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
+    public class func info(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
         custom(.info, tag, message(), file, function, line: line, context: context)
     }
     
-    class func warning(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
+    public class func warning(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
         custom(.warning, tag, message(), file, function, line: line, context: context)
     }
     
-    class func error(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
+    public class func error(_ tag: String, _ message: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, line: Int = #line, context: Any? = nil) {
         custom(.error, tag, message(), file, function, line: line, context: context)
     }
     

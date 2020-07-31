@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class MAGBackendLogSender {
+public class MAGBackendLogSender {
     
     private let fileManager = FileManager.default
     private var entriesFileURL = URL(fileURLWithPath: "")
@@ -29,7 +29,7 @@ final class MAGBackendLogSender {
     private(set) var queue: DispatchQueue
 
     
-    init(serverURL: URL, appID: String? = nil, appSecret: String? = nil, sendToServerTimeout: TimeInterval = 10, minAllowedThreshold: Int = 10) {
+    public init(serverURL: URL, appID: String? = nil, appSecret: String? = nil, sendToServerTimeout: TimeInterval = 10, minAllowedThreshold: Int = 10) {
         self.serverURL = serverURL
         self.appID = appID
         self.appSecret = appSecret
