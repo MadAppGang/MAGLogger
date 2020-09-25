@@ -1,5 +1,27 @@
 # MAGLogger
 
+## About
+
+MAGLogger is library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. After amount of events has been reached particular value (which can be customized), library attempts to send gathered data to server. Also it attempts to send data to server on every application startup.
+
+This library is distributed as two classes:
+- MAGLogger - main class to interact with library. It represents facade functions and prorerties which allow to set library up and log events;
+- MAGBackendLogSender - class which allows to store log events locally and send them to server whenever it necessary. It conforms to MAGLogSender protocol.
+
+If you want to implement your custom logging logic, you must implement your own log sender which must conform to MAGLogSender protocol, like MAGBackendLogSender class.
+
+## Installation
+
+### Swift Package Manager
+
+For [Swift Package Manager](https://swift.org/package-manager/) add the following package to your Package.swift file:
+
+``` Swift
+.package(url: "https://github.com/MadAppGang/MAGLogger.git", .upToNextMajor(from: "1.0.0")),
+```
+
+<br/>
+
 ## Usage
 
 Imprort MAGLogger module to be able to use it in your class.
@@ -8,12 +30,21 @@ Imprort MAGLogger module to be able to use it in your class.
 import MAGLogger
 ```
 
-At the the beginning of your AppDelegate:didFinishLaunchingWithOptions() confifure the MAGLogger log sender:
+At the the beginning of your AppDelegate:didFinishLaunchingWithOptions() configure the MAGLogger log sender:
 
 ``` Swift
 let logger = MAGLogger.self
 let logSender = MAGBackendLogSender(serverURL: URL(string: "https://....")!)
-logger.logSender = alogSender
+logger.logSender = logSender
+```
+
+You can also pass additional parameters to MAGBackendLogSender initializer, to customize it`s behaviour. For example:
+- appID and appSecret - to pass credetnitial for Basic-authentication
+- sendToServerTimeout - to set custom server request timeout
+- minAllowedThreshold - to set custom threshold for amount of log events before they will be sent to server
+
+``` Swift
+let logSender = MAGBackendLogSender(serverURL: URL, appID: String? = nil, appSecret: String? = nil, sendToServerTimeout: TimeInterval = 10, minAllowedThreshold: Int = 10)
 ```
 
 Now you can send logs:
@@ -39,4 +70,45 @@ logger.debug("My_TAG", "age", context: 123)  // "DEBUG: age 123"
 logger.info("My_TAG", "my data", context: [1, "a", 2]) // "INFO: my data [1, \"a\", 2]"
 ```
 
+## Data format
 
+MAGBackendLogSender uses JSON format to send gathered data to server. The sructre of JSON to be sent to server looks like:
+
+``` JSON
+{
+  "payload": {
+      "sessions":[{
+          "deviceName":"iPhone 8 Plus",
+          "osVersion":"14.0.0",
+          "appVersion":"1.0",
+          "os":"iOS",
+          "timestamp":1600932660.864331,
+          "deviceModel":"x86_64",
+          "sessionID":"2E26CFD3-8CFF-45EA-8C50-1C50DE45D36D",
+          "appBuild":1,
+          "hostName":"yaroslavs-macbook-pro-2.local",
+          "entries":[
+              {
+                "timestamp":1600932668.055263,
+                "thread":"",
+                "message":"hello1",
+                "tag":"",
+                "line":20,
+                "function":"actionTest(_:)",
+                "level":1,
+                "file":"ViewController.swift"
+              }, {
+                "thread":"",
+                "function":"actionTest(_:)",
+                "level":1,
+                "tag":"",
+                "line":20,
+                "timestamp":1600932668.671736,
+                "file":"ViewController.swift",
+                "message":"hello2"
+              }
+            ]
+        }]
+    }
+}
+```
