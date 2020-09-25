@@ -2,13 +2,13 @@
 
 ## About
 
-MAGLogger is a library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. You are able to scpecify one of five log levels (verbose, debug, info, warning, error), event TAG (context) and payload for each log event. After amount of events has been reached particular value (which can be customized), library attempts to send gathered data to server. Also it attempts to send data to server on every application startup.
+<em>MAGLogger</em> is a library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. You are able to scpecify one of five log levels (verbose, debug, info, warning, error), event TAG (context) and payload for each log event. After amount of events has been reached particular value (which can be customized), library attempts to send gathered data to server. Also it attempts to send data to server on every application startup.
 
 This library is distributed as two classes:
-- MAGLogger - the main class to interact with library. It represents facade functions and prorerties to set library up and create log events;
-- MAGBackendLogSender - class which allows to store log events locally and send them to server whenever it necessary. It conforms to MAGLogSender protocol.
+- <em>MAGLogger</em> - the main class to interact with library. It represents facade functions and prorerties to set library up and create log events;
+- <em>MAGBackendLogSender</em> - class which allows to store log events locally and send them to server whenever it necessary. It conforms to <em>MAGLogSender</em> protocol.
 
-If you want to implement your custom logging logic, you must implement your own log sender which must conform to MAGLogSender protocol, like MAGBackendLogSender class.
+If you want to implement your custom logging logic, you must implement your own log sender which must conform to <em>MAGLogSender</em> protocol, like <em>MAGBackendLogSender</em> class.
 
 ## Installation
 
@@ -24,13 +24,13 @@ For [Swift Package Manager](https://swift.org/package-manager/) add the followin
 
 ## Usage
 
-Imprort MAGLogger module to be able to use it in your class.
+Imprort <em>MAGLogger</em> module to be able to use it in your class.
 
 ``` Swift
 import MAGLogger
 ```
 
-At the the beginning of your AppDelegate:didFinishLaunchingWithOptions() configure the MAGLogger log sender:
+At the the beginning of your AppDelegate:didFinishLaunchingWithOptions() configure the <em>MAGLogger</em> log sender:
 
 ``` Swift
 let logger = MAGLogger.self
@@ -38,7 +38,7 @@ let logSender = MAGBackendLogSender(serverURL: URL(string: "https://....")!)
 logger.logSender = logSender
 ```
 
-You can also pass additional parameters to MAGBackendLogSender's initializer, to customize it`s behaviour. For example:
+You can also pass additional parameters to <em>MAGBackendLogSender</em>'s initializer, to customize it`s behaviour. For example:
 - appID and appSecret - to pass credetnitial for Basic-authentication
 - sendToServerTimeout - to set custom server request timeout
 - minAllowedThreshold - to set custom threshold for amount of log events before they will be sent to server
@@ -72,7 +72,7 @@ logger.info("My_TAG", "my data", context: [1, "a", 2]) // "INFO: my data [1, \"a
 
 ## Data format
 
-MAGBackendLogSender sends gathered data to server in JSON format using HTTP POST requests. The structre of JSON to be sent to server looks like:
+<em>MAGBackendLogSender</em> sends gathered data to server in JSON format using HTTP POST requests. The structre of JSON to be sent to server looks like:
 
 ``` JSON
 {
