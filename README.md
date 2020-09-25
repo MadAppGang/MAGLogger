@@ -2,13 +2,13 @@
 
 ## About
 
-<em>MAGLogger</em> is a library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. You are able to scpecify one of five log levels (verbose, debug, info, warning, error), event TAG (context) and payload for each log event. After amount of events has been reached particular value (which can be customized), library attempts to send gathered data to server. Also it attempts to send data to server on every application startup.
+<em>MAGLogger</em> is a library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. You are able to specify one of five log levels: verbose, debug, info, warning, error, event TAG, context and payload for each log event. After the amount of events has reached particular value (which can be customized), library attempts to send gathered data to the server. Also it attempts to send data to the server on every application startup.
 
 This library is distributed as two classes:
 - <em>MAGLogger</em> - the main class to interact with library. It represents facade functions and prorerties to set library up and create log events;
-- <em>MAGBackendLogSender</em> - class which allows to store log events locally and send them to server whenever it necessary. It conforms to <em>MAGLogSender</em> protocol.
+- <em>MAGBackendLogSender</em> - class which allows to store log events locally and send them to the server whenever it is necessary. It conforms to <em>MAGLogSender</em> protocol.
 
-If you want to implement your custom logging logic, you must implement your own log sender which must conform to <em>MAGLogSender</em> protocol, like <em>MAGBackendLogSender</em> class.
+If you want to implement your custom logging logic, you should implement your own log sender which would conform to <em>MAGLogSender</em> protocol, like <em>MAGBackendLogSender</em> class.
 
 ## Installation
 
@@ -39,7 +39,7 @@ logger.logSender = logSender
 ```
 
 You can also pass additional parameters to <em>MAGBackendLogSender</em>'s initializer, to customize it`s behaviour. For example:
-- appID and appSecret - to pass credetnitial for Basic-authentication
+- appID and appSecret - to pass credentials for Basic-authentication
 - sendToServerTimeout - to set custom server request timeout
 - minAllowedThreshold - to set custom threshold for amount of log events before they will be sent to server
 
@@ -72,7 +72,7 @@ logger.info("My_TAG", "my data", context: [1, "a", 2]) // "INFO: my data [1, \"a
 
 ## Data format
 
-<em>MAGBackendLogSender</em> sends gathered data to server in JSON format using HTTP POST requests. The structre of JSON to be sent to server looks like:
+<em>MAGBackendLogSender</em> sends gathered data to server in JSON format using HTTP POST requests. The structre of JSON sent to server looks like:
 
 ``` JSON
 {
