@@ -62,21 +62,19 @@ public class MAGBackendLogSender {
 
             let payload = makePayload(with: logEntries)
 
-            if let str = jsonStringFromDict(["payload": ["sessions": payload]]) {
-                sendToServerAsync(str) { success in
-                    if success {
-                        self.cleanSessionList()
-                        self.deleteFile(self.sendingFileURL)
-                    }
-                    self.sendingInProgress = false
-                    self.points = 0
+            sendToServerAsync(["payload": ["sessions": payload]]) { success in
+                if success {
+                    self.cleanSessionList()
+                    self.deleteFile(self.sendingFileURL)
                 }
+                self.sendingInProgress = false
+                self.points = 0
             }
         }
     }
 
     /// performs network request to send data to server
-    func sendToServerAsync(_ payloadStr: String, complete: @escaping (Bool) -> Void) {
+    func sendToServerAsync(_ payload: [String:Any], complete: @escaping (Bool) -> Void) {
         // create operation queue which uses current serial queue of destination
         let operationQueue = OperationQueue()
         operationQueue.underlyingQueue = queue
@@ -98,12 +96,11 @@ public class MAGBackendLogSender {
         }
         
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: payloadStr, options: [])
+            request.httpBody = try JSONSerialization.data(withJSONObject: payload, options: [])
         } catch {
             toNSLog("Error! Could not create JSON for server payload.")
             return complete(false)
         }
-        toNSLog("sending params: \(payloadStr)")
         toNSLog("sending ...")
 
         // send request async to server on destination queue
