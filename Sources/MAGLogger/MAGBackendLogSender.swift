@@ -62,7 +62,7 @@ public class MAGBackendLogSender {
 
             let payload = makePayload(with: logEntries)
 
-            if let str = jsonStringFromDict(["sessions": payload]) {
+            if let str = jsonStringFromDict(["payload": ["sessions": payload]]) {
                 sendToServerAsync(str) { success in
                     if success {
                         self.cleanSessionList()
@@ -97,14 +97,13 @@ public class MAGBackendLogSender {
             request.setValue("Basic \(base64Credentials)", forHTTPHeaderField: "Authorization")
         }
         
-        let params = ["payload": payloadStr]
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+            request.httpBody = try JSONSerialization.data(withJSONObject: payloadStr, options: [])
         } catch {
             toNSLog("Error! Could not create JSON for server payload.")
             return complete(false)
         }
-        toNSLog("sending params: \(params)")
+        toNSLog("sending params: \(payloadStr)")
         toNSLog("sending ...")
 
         // send request async to server on destination queue
