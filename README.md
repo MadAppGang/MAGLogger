@@ -44,7 +44,7 @@ You can also pass additional parameters to <em>MAGBackendLogSender</em>'s initia
 - minAllowedThreshold - to set custom threshold for amount of log events before they will be sent to server
 
 ``` Swift
-let logSender = MAGBackendLogSender(serverURL: URL, appID: String? = nil, appSecret: String? = nil, sendToServerTimeout: TimeInterval = 10, minAllowedThreshold: Int = 10)
+let logSender = MAGBackendLogSender(serverURL: URL(string: "https://...")!, appID: "...", appSecret: "...", sendToServerTimeout: 30, minAllowedThreshold: 50)
 ```
 
 Now you can send logs:
@@ -86,12 +86,12 @@ logger.info("My_TAG", "my data", context: [1, "a", 2]) // "INFO: my data [1, \"a
           "deviceModel":"x86_64",
           "sessionID":"2E26CFD3-8CFF-45EA-8C50-1C50DE45D36D",
           "appBuild":1,
-          "hostName":"yaroslavs-macbook-pro-2.local",
+          "hostName":"users-macbook-pro-2.local",
           "entries":[
               {
                 "timestamp":1600932668.055263,
                 "thread":"",
-                "message":"hello1",
+                "message":"test log message",
                 "tag":"",
                 "line":20,
                 "function":"actionTest(_:)",
@@ -105,7 +105,7 @@ logger.info("My_TAG", "my data", context: [1, "a", 2]) // "INFO: my data [1, \"a
                 "line":20,
                 "timestamp":1600932668.671736,
                 "file":"ViewController.swift",
-                "message":"hello2"
+                "message":"1265"
               }
             ]
         }]
