@@ -1,5 +1,5 @@
 # MAGLogger
-<p align="left"><a href="https://swift.org" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203,%204%20&%205-orange.svg" alt="Language Swift 2, 3, 4 & 5"></a> <a href="https://circleci.com/gh/SwiftyBeaver/SwiftyBeaver" target="_blank"><img src="https://travis-ci.org/MadAppGang/MAGLogger.svg?branch=master" alt="CircleCI"/> <a href="https://github.com/apple/swift-package-manager" target="_blank"><img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg" alt="Swift Package Manager compatible"/></a><br/><p>
+<p align="left"><a href="https://swift.org" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203,%204%20&%205-orange.svg" alt="Language Swift 2, 3, 4 & 5"></a> <a href="https://travis-ci.org/github/MadAppGang/MAGLogger" target="_blank"><img src="https://travis-ci.org/MadAppGang/MAGLogger.svg?branch=master" alt="CircleCI"/> <a href="https://github.com/apple/swift-package-manager" target="_blank"><img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg" alt="Swift Package Manager compatible"/></a><br/><p>
 
 ## About
 
