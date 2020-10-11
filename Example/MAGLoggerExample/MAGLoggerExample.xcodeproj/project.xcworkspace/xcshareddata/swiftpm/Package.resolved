@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MAGLogger",
+        "repositoryURL": "https://github.com/MadAppGang/MAGLogger.git",
+        "state": {
+          "branch": null,
+          "revision": "54c6d681a9015ec71404d8ee214be405b0ddbc9b",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
