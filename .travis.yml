@@ -1,0 +1,5 @@
+language:
+  - swift
+osx_image: xcode10.1
+script:
+  - xcodebuild -scheme MAGLogger -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test
