@@ -217,6 +217,7 @@ final class MAGLoggerTests: XCTestCase {
         ("testLoggingWithoutDestination", testLoggingWithoutDestination),
         ("testRemoveSender", testRemoveSender),
         ("testLogPassParameters", testLogPassParameters),
+        ("testMessageType", testMessageType),
         ("testGetCorrectThread", testGetCorrectThread),
         ("testAutoClosure", testAutoClosure),
     ]
