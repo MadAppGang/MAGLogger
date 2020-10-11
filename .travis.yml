@@ -2,6 +2,6 @@ language:
   - swift
 osx_image: xcode12
 script:
-  - swift build #Builds the dependencies
-  - swift test #Tests whatever is inside the Test folder
+  - xcodebuild build -sdk iphoneos -scheme 'MAGLogger'
+  - xcodebuild test -sdk iphoneos -scheme 'MAGLogger' -destination 'name=iPhone 8'
 
