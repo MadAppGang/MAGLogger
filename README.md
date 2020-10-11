@@ -1,5 +1,5 @@
 # MAGLogger
-
+<p align="left"><a href="https://swift.org" target="_blank"><img src="https://img.shields.io/badge/Language-Swift%203,%204%20&%205-orange.svg" alt="Language Swift 2, 3, 4 & 5"></a> <a href="https://circleci.com/gh/SwiftyBeaver/SwiftyBeaver" target="_blank"><img src="https://travis-ci.org/MadAppGang/MAGLogger.svg?branch=master" alt="CircleCI"/> <a href="https://github.com/apple/swift-package-manager" target="_blank"><img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg" alt="Swift Package Manager compatible"/></a><br/><p>
 ## About
 
 <em>MAGLogger</em> is a library wich allows you to collect application logs and send them to server. It gathers such data as application`s session information and detailed log events to local storage. You are able to specify one of five log levels: verbose, debug, info, warning, error, event TAG, context and payload for each log event. After the amount of events has reached particular value (which can be customized), library attempts to send gathered data to the server. Also it attempts to send data to the server on every application startup.
